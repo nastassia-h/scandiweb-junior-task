@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const ProductAddPage = () => {
 
-   const [type, setType] = useState('DVD');
+   const [type, setType] = useState('Type Switcher');
    const [message, setMessage] = useState(null);
 
    const handleSubmit = async (e) => {
@@ -24,11 +24,11 @@ const ProductAddPage = () => {
       formData.append('name', name)
       formData.append('price', price)
       formData.append('type', type)
-      formData.append('height', height)
-      formData.append('width', width)
-      formData.append('length', length)
-      formData.append('size', size)
-      formData.append('weight', weight)
+      height && formData.append('height', height)
+      width && formData.append('width', width)
+      length && formData.append('length', length)
+      size && formData.append('size', size)
+      weight && formData.append('weight', weight)
 
       const res = await fetch('https://scandiwebjuniortesttask.000webhostapp.com/addproduct', {
          method: "POST",
@@ -41,6 +41,7 @@ const ProductAddPage = () => {
          setMessage(data?.message);
       }
       document.getElementById('product_form').reset();
+      setType('Type Switcher')
    }
 
    return (
@@ -70,6 +71,7 @@ const ProductAddPage = () => {
                <Form.Group className="mb-3" >
                   <Form.Label>Type Switcher</Form.Label>
                   <Form.Select id="productType" name='type' value={type} onChange={(e) => setType(e.target.value)} required>
+                     <option value='Type Switcher'>Type Switcher</option>
                      <option id='DVD' value='DVD'>DVD</option>
                      <option id='Furniture' value='Furniture'>Furniture</option>
                      <option id='Book' value='Book'>Book</option>
