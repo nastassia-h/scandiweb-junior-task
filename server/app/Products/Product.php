@@ -16,9 +16,16 @@ abstract class Product extends Database
    protected $type;
    protected $attribute;
 
-   function __construct()
+   function __construct(array $inputs)
    {
       parent::__construct();
+
+      $this->inputs = $inputs;
+
+      $this->sku = $this->inputs['sku'];
+      $this->name = $this->inputs['name'];
+      $this->price = $this->inputs['price'];
+      $this->type = $this->inputs['type'];
    }
 
    public function getArray(): array
