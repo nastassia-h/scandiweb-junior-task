@@ -1,4 +1,5 @@
 import React, { useState, } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Stack, Card, Form } from 'react-bootstrap'
 import Stripe from '../components/Stripe'
 import { Link } from 'react-router-dom'
@@ -7,6 +8,8 @@ const ProductAddPage = () => {
 
    const [type, setType] = useState('Type Switcher');
    const [message, setMessage] = useState(null);
+
+   const navigate = useNavigate();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -39,9 +42,11 @@ const ProductAddPage = () => {
 
       if (!data?.status) {
          setMessage(data?.message);
+         document.getElementById('product_form').reset();
+         setType('Type Switcher')
+      } else {
+         navigate('/')
       }
-      document.getElementById('product_form').reset();
-      setType('Type Switcher')
    }
 
    return (

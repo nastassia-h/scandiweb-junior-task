@@ -1,5 +1,4 @@
 import './App.css';
-import Navbar from './components/Header'
 import Footer from './components/Footer'
 import Header from './components/Header';
 import AppRouter from './router/AppRouter'
